@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 
 @Entity //Used to mark the class as a persistent Java class.
@@ -18,6 +19,9 @@ public class Ingredient implements Serializable { //Implements used so Note clas
     @Id //Used to define the primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Used to define the primary key generation strategy. In the above case, we have declared the primary key to be an Auto Increment field
     private Long ingredient_id;
+
+    @ManyToMany(mappedBy = "ingredientSet") //Used to show the many-to-many relationship
+    Set<Recipe> recipeSet; //Collection used to contain elements of both classes
 
     @NotBlank //Used to validate that the annotated field is not null or empty
     private String ingredient_name;
