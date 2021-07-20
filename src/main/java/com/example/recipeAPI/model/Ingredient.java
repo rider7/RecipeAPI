@@ -7,9 +7,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
+import lombok.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity //Used to mark the class as a persistent Java class.
 @Table(name = "ingredient") //Used to provide the details of the table that this entity will be mapped to
 @EntityListeners(AuditingEntityListener.class) // Specifies the callback listener classes to be used for an entity or mapped superclass.
@@ -20,8 +25,8 @@ public class Ingredient implements Serializable { //Implements used so Note clas
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Used to define the primary key generation strategy. In the above case, we have declared the primary key to be an Auto Increment field
     private Long ingredient_id;
 
-    @ManyToMany(mappedBy = "ingredientSet") //Used to show the many-to-many relationship
-    Set<Recipe> recipeSet; //Collection used to contain elements of both classes
+    //@ManyToMany(mappedBy = "ingredientSet") //Used to show the many-to-many relationship
+    //List<Recipe> recipes; //Collection used to contain elements of both classes
 
     @NotBlank //Used to validate that the annotated field is not null or empty
     private String ingredient_name;
